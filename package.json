@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node src/app.ts",
-    "dev:nodemon": "nodemon",
+    "dev:nodemon": "nodemon -b 10",
     "build": "rimraf ./dist && tsc",
     "start": "npm run build && node dist/app.js"
   },
@@ -14,9 +14,13 @@
   "description": "",
   "devDependencies": {
     "@types/node": "^20.14.11",
+    "@types/yargs": "^17.0.32",
     "nodemon": "^3.1.4",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "yargs": "^17.7.2"
   }
 }
