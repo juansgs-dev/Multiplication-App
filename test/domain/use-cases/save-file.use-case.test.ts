@@ -25,9 +25,11 @@ describe('SaveFileUseCase', () => {
         expect( result ).toBe( true );
         expect( fileExists ).toBe( true );
         expect( fileContent ).toBe( options.fileContent );
-
-
     });
+
+    test('should save file with custom values', () => {
+
+    })
 
 
 })
