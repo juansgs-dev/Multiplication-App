@@ -52,5 +52,9 @@ describe('SaveFileUseCase', () => {
         expect( fileContentRead ).toBe( fileContent );
     })
 
+    test('should return false if directory could no be created', () => {
+
+    })
+
 
 })
