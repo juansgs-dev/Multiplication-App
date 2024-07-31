@@ -6,6 +6,7 @@ import { SaveFile } from '../../../src/domain/use-cases/save-file.use-case';
 describe('SaveFileUseCase', () => {
 
     
+    
     afterEach(()=>{
         if (fs.existsSync('outputs')) fs.rmSync('outputs', { recursive: true });
         if (fs.existsSync('custom-outputs')) fs.rmSync('custom-outputs', { recursive: true });
@@ -53,6 +54,42 @@ describe('SaveFileUseCase', () => {
     })
 
     test('should return false if directory could no be created', () => {
+
+        const options = {
+            fileContent: 'custom content',
+            fileDestination: 'custom-outputs/file-destination',
+            fileName:  'custom-table-name'
+        }
+
+        const saveFile = new SaveFile();
+        const mkdirSpy = jest.spyOn(fs, 'mkdirSync').mockImplementation(
+            () => { throw new Error('This is a custom error message from testing') }
+        );
+
+        const result = saveFile.execute(options);
+
+        expect( result ).toBe(false);
+
+        mkdirSpy.mockRestore();
+
+    })
+
+    test('should return false if file could no be created', () => {
+
+        const options = {
+            fileContent: 'custom content',
+            fileDestination: 'custom-outputs/file-destination',
+            fileName:  'custom-table-name'
+        }
+
+        const saveFile = new SaveFile();
+        const mkdirSpy = jest.spyOn(fs, 'mkdirSync').mockImplementation(
+            () => { throw new Error('This is a custom writting error message') }
+        );
+
+        const result = saveFile.execute({ fileContent: 'Hola'});
+
+        expect( result ).toBe( false );
 
     })
 
