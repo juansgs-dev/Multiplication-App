@@ -14,8 +14,8 @@ describe('Server App', () => {
 
     test('should run ServerApp with options', () => {
 
+        const logSpy = jest.spyOn(console, 'log');
 
-        
 
         const options = {
             base: 2,
@@ -26,6 +26,10 @@ describe('Server App', () => {
         }
 
         ServerApp.run(options);
+
+        expect(logSpy).toHaveBeenCalledTimes(2);
+        expect(logSpy).toHaveBeenCalledWith('Server running...');
+        expect(logSpy).toHaveBeenLastCalledWith('File Created');
 
     })
 
