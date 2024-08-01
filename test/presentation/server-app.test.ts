@@ -12,4 +12,10 @@ describe('Server App', () => {
 
     });
 
+    test('should run ServerApp with options', () => {
+
+        
+
+    })
+
 });
