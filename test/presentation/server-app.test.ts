@@ -27,7 +27,7 @@ describe('Server App', () => {
 
         const logSpy = jest.spyOn(console, 'log');
         const createTableSpy = jest.spyOn( CreateTable.prototype, 'execute' );
-        // const saveFileSpy = jest.spyOn( SaveFile.prototype, 'execute');
+        const saveFileSpy = jest.spyOn( SaveFile.prototype, 'execute');
 
         ServerApp.run(options);
 
@@ -40,12 +40,12 @@ describe('Server App', () => {
             base: options.base, limit: options.limit
         });
 
-        // expect(saveFileSpy).toHaveBeenCalledTimes(1);
-        // expect(saveFileSpy).toHaveBeenCalledWith({
-        //     fileContent: expect.any(String),
-        //     fileName: options.name,
-        //     fileDestination: options.destination
-        // });
+        expect(saveFileSpy).toHaveBeenCalledTimes(1);
+        expect(saveFileSpy).toHaveBeenCalledWith({
+            fileContent: expect.any(String),
+            fileName: options.name,
+            fileDestination: options.destination
+        });
 
     })
 
