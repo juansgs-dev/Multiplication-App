@@ -50,7 +50,27 @@ describe('Server App', () => {
     })
 
     test('should run with custom values mocked', () => {
-        
+
+        const logMock = jest.fn();
+        const createMock = jest.fn().mockReturnValue('2 x 2 = 4');
+        const saveFileMock = jest.fn().mockReturnValue(true);
+
+        global.console.log = logMock;
+        CreateTable.prototype.execute = createMock;
+        SaveFile.prototype.execute = saveFileMock;
+
+        ServerApp.run(options);
+
+        expect(logMock).toHaveBeenCalledWith('Server running...');
+        expect(createMock).toHaveBeenCalledWith({"base": options.base, "limit": options.limit});
+        expect(saveFileMock).toHaveBeenCalledWith({
+            fileContent: expect.any(String),
+            fileName: options.name,
+            fileDestination: options.destination
+        })
+        expect(logMock).toHaveBeenCalledWith('File Created');
+
+
     })
 
 });
